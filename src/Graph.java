@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
 
 public class Graph {
     private int vert;   // No. of vertices
@@ -21,11 +23,9 @@ public class Graph {
 
     public void bfs (int start){
         boolean[] visited = new boolean[vert];
-
-        LinkedList<Integer> queue = new LinkedList<>();
-
         visited[start] = true;
 
+        LinkedList<Integer> queue = new LinkedList<>();
         queue.add(start);
 
         while(!queue.isEmpty()){
@@ -39,8 +39,20 @@ public class Graph {
                 }
             }
         }
-
+        System.out.println();
     }
+
+    public void dfs (int start, Set<Integer> visited){
+        System.out.print(start+" -> ");
+        visited.add(start);
+
+        for(Integer child: adj[start]){
+            if(!visited.contains(child)) {
+                dfs(child, visited);
+            }
+        }
+    }
+
 
     public static void main(String[] args){
         Graph graph = new Graph(6);
@@ -53,6 +65,7 @@ public class Graph {
         graph.addEdge(3,5);
 
         graph.bfs(0);
+        graph.dfs(0, new HashSet<>());
     }
 
 }
