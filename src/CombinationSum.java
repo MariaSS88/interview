@@ -18,7 +18,11 @@ public class CombinationSum {
             if(s<target) {
                 s += nums[j];
                 combo.add(nums[j]);
-                helperUnique(nums, target, result, combo, s, j);
+                //helperUnique(nums, target, result, combo, s, j);
+                //if use each number only once
+                helperUnique(nums, target, result, combo, s, j+1);
+                //if combination not unique
+                //helperUnique(nums, target, result, combo, s, 0);
                 combo.remove(combo.size() - 1);
                 s -= nums[j];
             }
@@ -34,7 +38,7 @@ public class CombinationSum {
 
     public static void main (String[] args){
         CombinationSum test = new CombinationSum();
-        int[] nums = {2,4,6,8};
+        int[] nums = {10,1,2,7,6,1,5};
         test.uniqueCombinations(nums,8);
     }
 }
