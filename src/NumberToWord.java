@@ -32,21 +32,11 @@ public class NumberToWord
         return str;
     }
 
-    // Function to print a given number in words
     static String convertToWords(long n) {
-        // stores word representation of given number n
         String out = "";
         out += numToWords((int) (n / 1000000000), "billion ");
-
-        // handles digits at ten millions and hundred
-        // millions places (if any)
         out += numToWords((int) ((n / 1000000)%1000), "million ");
-
-        // handles digits at thousands and tens thousands
-        // places (if any)
         out += numToWords((int) ((n / 1000) % 1000), "thousand ");
-
-        // handles digits at ones and tens places (if any)
         out += numToWords((int) (n % 1000), "");
 
         return out;
